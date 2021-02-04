@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FOX</title>
+	<!--<script src="main.js"></script>-->
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<h1 id="fox">F<span style="color: red">O</span>X</h1>
+	<div id="searchBox">
+		<input type="text" id="inp" onkeypress="search()">
+		<button id="searchButton" onclick="onlineSearch()">Search</button>
+	</div>
+	<h4 id="noResults">That is a tricky one! Press Search to find online</h4>
+	<div id="searchResults">
+		<h3>Here is what we have:</h3>
+		<ul id="resultList"></ul>
+		<h4>Didn't find what you are looking for? Press Search to find it online</h4>
+	</div>
+	<footer id="main-footer">
+		<p>Copyright &copy; 2021 FOX </p>
+	</footer>
+	<script type="text/javascript">
+		var all = ["occuring at irregular intervals : episodic",
+       "occuring again and again : recurring",
+       "It is of sudden onset : accute",
+       "Increases in severity : evolving",
+       "Incapacitates the patient : disabling",
+       "Difficult to alleviate : intractable",
+       "Pulsating or beating repeatedly : Throbbing",
+"Relieving Pain : analgesic/painkiller",
+                  "preventing vomiting : antiemetic",
+                  "preventing pregnancy : contraceptive",
+                  "control or reduce inflammation : antiinflamator",
+                  "designed to be disolved and not swallowed : mouth dispersible",
+                  "solid form of drug inserted into the rectum, vagina, or urethra : suppository",
+                  "forced into circulation with vein : injectable",
+                  "does not require doctor's prescription : over the counter",
+                  "require doctor's prescription : prescribed",
+       "Νεφρικό σωμάτιο : Renal corpuscle",
+       "Αγγειώδες σπείραμα : Glomelular capillaries",
+       "Εγγύς / άπω εσπειραμένο σωληνάριο : Proximal/Distal Convoluted tubule",
+       "Αθροιστικός πόρος : Collecting duct",
+       "Ευθέα αγγεία : Vasa recta",
+       "Αγγύλη του Ηenle : Loop of Henle",
+       " Κατιόν / ανιόν σκέλος : Ascending/Descending limb",
+       "Τοξοειδείς αρτηρίες : Arcuate arteries",
+       "Παραμυελικοί νεφρώνες : Juxtamedullary nephron",
+       "Φλοιώδης νεφρώνας : Cortical nephron",
+       "Μεσολοβίδιες αρτηρίες : __Interlobular arteries",
+       "Μεσολόβιες φλέβες : Interlobal arteries",
+       "Ακτινωτή αρτηρία : Radiate artery",
+       "Προσαγωγό / απαγωγό αρτηρίδιο : Afferent/efferent arteriole",
+       "Route of blood : 1.Renal artery  2.Segmental arteries 3.Interlobal arteries 4.Arcuate arteries 5.Interlobular arteries 6.Afferent arterioles 7.Glomerulus 8.Efferent arterioles 9. Peritubular capillaries/Vasa recta",
+"Fainting, loss of consciousness : syncope",
+                  "Bluish discoloration of the skin or nails due to lack of oxygen : cyanosis",
+                  "Air hunger, breathlessness : SOB",
+                  "Difficulty breathing : dyspnea",
+                  "Cramp-like pains in the calves caused by poor circulation in the leg muscles : Claudication",
+                  "Decreased blood supply : ischemia",
+                  "Profuse sweating : diaphoresis",
+                  "Pounding or racing of the heart such that the patient is aware of their heart beat : palpitations",
+                  "Paleness of the skin : pallor",
+"Cardiac anomaly of four defects :  pulmonic stenosis, ventricular septal defect (VSD),malposition of the aorta and right ventricular hypertrophy : Tetralogy of Fallot",
+                 "Localized narrowing of the largest artery of the body : Coarctation of the aorta",
+                 "Abnormal opening between the pulmonary artery and the aorta caused by failure of the fetal ductus arteriosus to close after birth, most often in premature infants : Patent ductus arteriosus (PDA)",
+                 "A hole in the wall between the atria or between the ventricles : Septal defect",
+                 "A congenital heart defect where the left atrium (sinistrum) or right atrium (dextrum) is subdivided by a thin membrane, resulting in three atrial chambers (hence the name) : Cor triatriatum",
+                 "Protrusion (drooping, falling forward) of one or both cusps of the MV back into the LA during ventricular systole : mitral valve prolapse",
+                 "Backflow of blood from the LV into the LA in systole across a diseased valve : mitral regurgitation",
+                 "Inflammatory condition of a cardiac valve, commonly caused by rheumatic fever : valvulitis",
+                 "Relatively uncommon narrowing of the TV. Symptoms include jugular vein distention and pulmonary congestion : tricuspid stenosis",
+                 "Failure of a valve to close properly : valvular incompetence/insufficiency",
+"Extremely rapid and irregular contractions (300-600 bpm) : fibrillation",
+             "Extremely rapid but regular heart beat (250-350 bpm) : flutter",
+             "Any abnormality of the sinus node that may include the necessity of an implantable pacemaker : sick sinus syndrome",
+             "Incomplete electrical conduction in the bundle branches either left or right : bundle-branch block",
+             "The general term for lack of electrical communication : heart block",
+       "Inflammation of either deep or superficial veins (DVT / SVT) with the formation of one or more blood clots : Aneurysm",
+       "Condition of high or elevated blood pressure either essential or secondary : hypertension",
+       "Localized dilation of an artery caused by a congenital or acquired weakness in the wall of a vessel : varices",
+       "The abnormal, and usually abrupt, formation of a tear along the internal layer (tunica intima) or the external layer (tunica adventitia) of the wall of an artery : arterial dissection",
+       "Abnormally dilated vessel (usually a vein) with a tortuous (twisted) course : thrombophlebitis",
+       "Condition in which a detached thrombus travels through the bloodstream and lodges so as to obstruct or occlude a blood vessel (coronary, pulmonary, cerebral ) : embolism",
+"size : closed fist",
+    "apex shape : Blunt rounded point of cone",
+    "base shape : Flat part at opposite of end of cone",
+    "location : thoracic cavity in mediastinum",
+    "heart wall : Epicardium, Myocardium, Endocardium",
+    "pericardium : visceral, pericardial cavity, parietal, fibrous(ινώδες), serous(ορώδες)",
+    "heart chambers : right atrium, right ventricle, left atrium, left ventricle",
+    "valves of the heart : aortic valve, tricuspid valve(τριγλώχινα), pulmonary(πνευμονική) valve, mitral valve",
+    "chordae tendineae, tendinous chords : Τενοντιες Χορδες",
+    "posterior papillary muscle : Οπίσθιος θυλοειδής μυς",
+    "trabeculae carneae : Μυικές δοκίδες",
+    "posterior leaflet : Οπισθια γλωχίνα",
+    "fossa ovalis : ωοειδής βόθρος",
+    "superior vena cava : ανω κοιλη φλεβα",
+    "pectinate muscles : κτενιοειδείς μυες",
+    "eustachian valve : ευσταχιανη βαλβίδα",
+    "terminal crest : a vertical crest on the interior wall of the right atrium that lies to the right of the sinus of the vena cava and separates this from the remainder of the right atrium.",
+    "sinoatrial node : φλεβοκομβος, The heart’s natural pacemaker",
+    "atrioventricular node : κολποκοιλιακος κομβος",
+    "septum : muscular partitions that divide the heart chambers internally",
+    "pit :  Grooved depressions (indentations, fissures) on the surface of the heart",
+    "Atrial Appendage : Expandable, ear-shaped appendage in each atrium, Ωτίο του κόλπου",
+    "conducting system of the heart : System consisting of specialized tissues that generate and distribute electrical impulses through the heart",
+    "Contraction of the ventricles : Systole",
+    "Relaxation of the ventricles : Ventricular relaxation",
+"Λοχεια : puerperium",
+    "ηβη, εφηβεια : puberty",
+    "κλιμακτηριος : climacterium",
+    "εμμηνοπαυση : menopause",
+    "εμμηνος ρυση, περιοδος : Menstruation",
+    "αντισυλληψη : contraception, Birth control",
+"Warning signs before an attack of epilepsy or migraine :  aura",
+    "Bursts of electrical activity in the brain that temporarily affect how it works : seizures",
+    "General gastrointestinal symptoms, such as abdominal pain and constipation, associated with a headache : bilious attacks",
+    "Swelling of the optic disc(s) :  papilloedema",
+    "Lack of muscle control or coordination of voluntary movements, such as walking or picking up objects. A sign of an underlying condition : Ataxia",
+    "An examination that uses a magnifying lens and a light to check the back of the inside of the eye, including the retina and optic nerve :  fundoscopy",
+    "A mild state of nausea (Also, nervousness, uneasiness) : queasiness",
+"Spinal cord Begins at : foramen magnum, ινιακο τρημα",
+    "medulla oblongata : Προμηκης μυελος",
+    "Spinal cord of Adult, Ends at : Lower border of the first lumbar vertebra, πρωτος οσφυικος σπονδυλος",
+    "Spinal cord Occupies : the upper two-thirds of the vertebral canal (οσφυικου σωληνα)",
+    "Spinal cord is Sourrounded by : Spinal Meninges",
+    "Cerebrospinal fluid (CNS) : (ΕΝΥ) Εγκεφαλονωτιαιο υγρο",
+    "spindle like swellings : cervical enlargement and lumbar enlargement",
+    "Conus medullaris : κώνος νωτιαίου μυελού",
+    "filum terminale : Thin filament, τελικο νηματιο ",
+    "cauda equina : ιππουριδα",
+    "Anterior median fissure : προσθια μεση σχισμη",
+    "Posterior median sulcus : οπισθια μεση αυλακα",
+    "Tract : οδός",
+    "δεμάτιο : fasciculus",
+    "funiculus : white matter, λευκη ουσια",
+    "column : δέσμη ",
+    "trunk : στέλεχος νεύρου (ή αρτηρίας )",
+    "Contralateral : αντίπλευρος",
+    "ipsilateral  : ομόπλευρος",
+    "collateral :  παράπλευρος",
+    "Exteroception : εξωδεκτικότητα",
+    "proprioception : ιδιοδεκτικότητα ",
+    "proprius : ίδιος",
+    "Touch (Αδρη Αφη, Διακριτικη Αφη) : light touch, crude touch, discriminatory touch",
+    "Παλλαισθησία : vibratory sense",
+    "31 pairs of spinal nerves : 31 ζευγη νωτιαων νευρων",
+    "8 cervical nerves : 8 αυχενικά",
+    "12 thoracic nerves : 12 θωρακικα",
+    "5 lumbar nerves : 5 οσφυικα",
+    "5 sacral nerves : 5 ιερα",
+    "1 coccygeal nerve : 1 κοκκυγικο",
+    "Afferent nerves : Προσαγωγα",
+    "Efferent nerves : Απαγωγα",
+"CN I Olfactory cranial nerve : Οσφρητικο 1",
+    "CN II Optic cranial nerve : Οπτικο 2",
+    "CN III Oculomotor cranial nerve : Κοινο κινητικο 3",
+    "Trochlear (CN IV), cranial nerve : Τροχηλιακο 4",
+    "Trigeminal (CN V), cranial nerve : Τριδυμο 5",
+    "Abducent (or abducens; CN VI), cranial nerve : Απαγωγο 6",
+    "Facial (CN VII), cranial nerve : Προσωπικο 7",
+    "Vestibulocochlear (CN VIII), cranial nerve : Στατικοακουστικο 8",
+    "Glossopharyngeal (CN IX), cranial nerve : Γλωσσοφαρυγγικο 9",
+    "Vagus (CN X), cranial nerve : Πνευμονογαστρικο 10",
+    "Accessory (CN XI) cranial nerve : Παραπληρωματικο 11",
+    "Hypoglossal (CN XII) cranial nerve : Υπογλωσσιο 12",
+"Central Nervous System (CNS) : Κεντρικο Νευρικο Συστημα (ΚΝΣ)",
+    "Peripheral Nervous System (PNS) : Περιφερικο Νευρικο Συστημα (ΠΝΣ)",
+    "Forebrain, prosencephalon : Προσθιος Εγκεφαλος",
+    "Midbrain : (Μεσος εγκεφαλος) The principal regions are the tectum  and the cerebral peduncles",
+    "Hindbrain : Οπισθιος εγκεφαλος",
+    "Parts of Forebrain : Telencephalon(τελικος εγκεφαλος), Cerebral Cortex (Εγκεφαλικος φλοιος), Basal Ganglia (Βασικα Γαγγλια), Hippocampus (Ιπποκαμπος), Amygdala (Αμυγδαλή), Diencephalon(Διεγκεφαλος),\n Thalamus (Θαλαμος), Hypothalamus (Υποθαλαμος)",
+    "Parts of Midbrain : Mesencephalon (Μεσεγκεφαλος), Tectum (τετραδυμο πεταλο), Tegmentum (Καλυπτρα)",
+    "Parts of Hindbrain : Metencephalon (Οπισθιος Εγκεφαλος), Myelencephalon (Εσχατος Εγκεφαλος), Pons (γεφυρα), Cerebellum (Παρεγκεφαλιδα), Medulla (Προμηκης μυελος)",
+    "Brain stem : Στελεχος του εγκεφάλου",
+    "pituitary gland : Υποφυση",
+    "epiphysis : Επιφυση",
+    "Cerebral hemispheres : Εγκεφαλικα Ημισφαιρια",
+    "Interhemispheric, Longitudinal Cerebral Fissure : Επιμηκης Σχισμη Εγκεφαλου",
+    "Sulci : Αυλακες",
+    "Gyri : Ελικες",
+    "Frontal lobe : Μετωπιαιος Λοβος",
+    "Parietal lobe : Βρεγματικος Λοβος",
+    "Occipital lobe : Ινιακος λοβος",
+    "Central Sulcus : Κεντρικη Αυλακα",
+    "Cortex (gray matter) : Φλοιος (Φαια ουσία)",
+    "Commissures : Συνδεσμοι",
+    "Ventricles : Κοιλιες",
+    "Meninges : Μηνιγγες",
+    "Choroid Plexus : Χοριοειδες πλεγμα",
+    "(Sylvius) Cerebral Aqueduct : Υδραγωγος του Sylvious",
+    "inferior colliculus : Κατω διδυμιο",
+    "sinus : Κολπος",
+    "Tentorium : Σκηνιδιο Παρεγκεφαλιδας",
+    "superior colliculus : Ανω διδυμιο",
+    "parieto-occipital sulcus : Βρεγματοινιακη αυλακα",
+    "pineal body : Κωναριο",
+    "corpus callosum : Μεσολοβιο",
+    "cingulate gyrus : Ελικα Προσαγωγιου",
+    "Septal Region : διαφραγματικη περιοχη",
+    "Fornix : Ψαλιδα του Εγκεφαλου",
+    "Lamina Terminalis : Τελικο πεταλο",
+    "Optic Chiasm : Οπτικο Χιασμα",
+    "Mammillary body : μαστιο",
+"caudate nucleus : Κερκοφορος Πυρηνας",
+    "claustrum : Προτειχισμα",
+    "corpus striatum : Ραβδωτο Σωμα",
+    "globus pallidus : Ωχρα Σφαιρα",
+    "lentiform nucleus : Φακοειδης Πυρηνας",
+    "putamen : Κελυφος",
+    "cerebellar peduncles : (Παρεγκεφαλιδικά Σκελη) Fibre tracts connecting the cerebellum and medulla oblongata to other structures of  the brain",
+"Medulla Oblongata : Composed of the ascending and descending tracts of the spinal cord and contains nuclei for several autonomic functions",
+    "pyramidal decussation : (Χιασμος των πυραμιδων) Near the junction of this structure and the spinal cord the fibers of the corticospinal tracts cross from one side of the nervous system to the other",
+    "cerebral peduncles : (Εγκεφαλικα Σκελη) Subdivided into the crus cerebri and the tegmentum(καλυπτρα)",
+    "corpora quadrigemina : 4 colliculi (διδυμια)",
+"cerebellum : foliated structure,  consists of two hemispheres connected by the vermis(σκωληκας) and supported by three cerebellar peduncles",
+    "Vermis : Σκωληκας Παρεγκεφαλιδας",
+    "Cerebellum : composed of white matter tracts called the arbor vitae (Δενδρο της Ζωης), surrounded by a thin convoluted cortex of gray matter.",
+    "arbor vitae : Δενδρο της Ζωης",
+"πεδίο, περιοχή, άλως  :   Αrea(s)", "εγκέφαλος  :   Εncephalon", "ιπποκάμπεια αύλακα  :   Ηippocampal fissure", "Μετωπιαίος λοβός  :   Frontal lobe", "πυρήνας απαγωγού νεύρου  :   Νucleus of abducens nerve", "επικουρικός αμυγδαλοειδής πυρήνας  :   Accessory amygdaloid nucleus", "επικουρικός πυρήνας κάτω ελαίας  :   Accessory olivary nucleus", "Ακετυλοχολίνη  :   Acetylcholine", "ακουστική χορδή  :   Acoustic stria", "Δυναμικό ενεργείας  :   Action potential", "αδρεναλινεργικές ίνες (=αδρενεργικές)  :   Adrenergic fibre(s)", "προσαγωγοί ίνες  :   Afferent fibre(s)", "άκοκκος φλοιός  :   Agranular cortex", "φαιή πτέρυγα (=τρίγωνο πνευμονο-γαστρικού νεύρου)  :   Ala cinerea (=vagal trigone)", "πτέρυγα κεντρικού λοβίου  :   Alar central lobule", "πτερυγοειδές πέταλο  :   Alar plate (= alar lamina)", "αλλόφλοιος (=ετερότυπος φλοιός)  :   Allocortex (=heterotypical cortex)", "Σκάφη<br / Part of the hippocampus  :   Alveus", "σκάφη ιπποκάμπου  :   Alveus of hippocampus", "βραχύινο κύτταρο  :   Amacrine cell(s)", "αμφιμηνοειδής έλικα  :   Ambient gyrus", "δέρας οδοντωτού πυρήνα  :   Amiculum of dentate nucleus", "δέρας κάτω ελαίας  :   Amiculum of the inferior olive", "Aμμώνειο κέρας  :   Ammon horn", "Αμυγδαλή  :   Amygdala", "αμυγδαλοϋποθαλαμικές ίνες  :   Amygdalo-hypothalamic fibre(s)", "απαγωγοί ίνες αμυγδαλοειδούς σώματος  :   Amygdalofugal fibre(s)", "πυρήνες αμυγδαλοειδούς σώματος  :   Amygdaloid nuclear complex", "πυρήνες αμυγδαλοειδούς σώματος  :   Amygdaloid nuclear complex", "γωνιώδης έλικα  :   Angular gyrus", "φακοειδής αγκύλη  :   Ansa lenticularis", "πυρήνας φακοειδούς αγκύλης  :   Ansa lenticularis nucleus", "σκελιαία αγκύλη  :   Ansa peduncularis", "αγκυλοειδές λόβιο  :   Ansiform lobule", "παραμεσοαγκυλοειδής σχισμή  :   Ansoparamedian fissure", "Πρόσθιος  :   Anterior", "πρόσθιος αμυγδαλοειδής πυρήνας  :   Anterior amygdaloid nucleus", "πρόσθια δέσμη  :   Anterior funiculus", "πρόσθιο σκέλος έσω κάψας  :   Anterior limb of internal capsule", "πρόσθιος λοβός υποφύσεως (=αδενοϋπόφυση)  :   Anterior lobe of hypophysis (=adenohypophysis)", "πρόσθια μέση σχισμή  :   Anterior median fissure", "πρόσθιο τετράγωνο λόβιο  :   Anterior quadrangular lobule [H IV and H V]", "προσθιοπλάγιο δεμάτιο του Gowers  :   Anterolateral bundle of Gowers (=anterolateral fasciculus)", "προσθιοπλάγια δέσμη  :   Anterolateral funiculus", "Υδραγωγός εγκεφάλου  :   Aqueduct, cerebral", "Αραχνοειδής μήνιγγα  :   Arachnoid", "αραχνοειδής μήνιγγα  :   Arachnoid", "αραχνοειδείς λάχνες  :   Arachnoid villi", "δένδρο της ζωής (παρεγκεφαλίδας)  :   Arbor vitae (of cerebellum)", "αρχιπαρεγκεφαλίδα  :   Archicerebellum", "αρχιχιτώνιο  :   Archipallium", "αρχιραβδωτό σώμα (=αμυγδαλοειδές σώμα)  :   Archistriatum (=corpus amygdaloideum)", "τοξοειδής πυρήνας&nbsp; υποθαλάμου  :   Arcuate nucleus of the hypothalamus (=infundibular)", "έσχατη πτέρυγα  :   Area postrema", "συνειρμικά πεδία  :   Association area", "συνδετικό κύτταρο  :   Association cell(s) (=commissural)", "Συνειρμικός φλοιός  :   Association Cortex", "συνδετικός νευρώνας  :   Association neuron", "Ακουστικός φλοιός  :   Auditory cortex", "ακουστικός φλοιός  :   Auditory cortex", "ακουστική οδός  :   Auditory pathway", "ακουστικό σύστημα  :   Auditory system", "νευραξονοδενδριτική σύναψη  :   Axo-dendritic synapses", "νευραξονοαξονική σύναψη  :   Axoaxonic synapse", "αξονόλημα  :   Axolemma", "νευράξονας (=νευρίτης)  :   Axon", "παράπλευρα κλωνία  :   Axon collaterals", "εκφυτικός κώνος  :   Axon hillock", "τελικά κλωνία (=δενδρύλλια)  :   Axon terminals", "νευραξονοσωματική σύναψη  :   Axosomatic synapse", "Βαρελοειδής φλοιός  :   Barrel Cortex", "βασικός αμυγδαλοειδής πυρήνας  :   Basal amygdaloid nucleus", "βασική τηλεγκεφαλική δεσμίδα  :   Basal forebrain bundle", "Βασικά γάγγλια  :   Basal ganglia", "βασικά γάγγλια  :   Basal ganglia (= basal nuclei)", "βασικό πέταλο  :   Basal plate (=neural tube)", "καλαθιοφόρο κύτταρο  :   Basket cell(s)", "δίπολο κύτταρο  :   Bipolar cell(s)", "δίπολος νευρώνας  :   Bipolar neuron", "δικοιλιακό λόβιο (=διγάστορ)  :   Biventer lobule (=biventral lobule)", "αιματο-εγκεφαλικός φραγμός  :   Blood-brain barrier", "αιματο-λεμφικός φραγμός  :   Blood-cerebrospinal fluid", "μεθόριο κύτταρο  :   Bordercell", "τελικά κομβία  :   Boutons terminaux (=end feet)", "στέλεχος του εγκεφάλου  :   Brain stem", "πεδίο Broca  :   Broca area", "πτηναίο πλήκτρο  :   Calcar avis", "ίππουρη  :   Cauda equina", "Ουριαίος  :   Caudal", "κερκοφόρος πυρήνας  :   Caudate nucleus", "κερκοφόρος πυρήνας  :   Caudate nucleus", "κερκοφορο-ωχραίες ίνες  :   Caudatopallidal fibre(s)", "κοιλία διαφανούς διαφράγματος  :   Cavum septum pellucidum", "κεντρικός σωλήνας νωτιαίου μυελού  :   Central canal", "πρόσθιος λοβός  :   Central lobe", "κεντρικό λόβιο  :   Central lobule", "κεντρικό νευρικό σύστημα  :   Central nervous system", "κεντρικός πυρήνας (=πυρήνας του Perlia)  :   Central nucleus (of Perlia)", "κεντρικός πυρήνας  :   Centromedian nucleus", "κεντρικός πυρήνας θαλάμου  :   Centromedian nucleus", "φλοιός παρεγκεφαλίδας  :   Cerebellar cortex", "έλικες παρεγκεφαλίδας  :   Cerebellar folium", "σπείραμα παρεγκεφαλίδας  :   Cerebellar glomerulus", "ημισφαίριο παρεγκεφαλίδας  :   Cerebellar hemisphere", "παρεγκεφαλιδικό πέταλο  :   Cerebellar plate",
+ "αμυγδαλή παρεγκεφαλίδας  :   Cerebellar tonsil", "παρεγκεφαλιδογεφυρική γωνία  :   Cerebellopontine angle", "παρεγκεφαλιδοαιθουσαίες ίνες  :   Cerebellovestibular fibre(s)", "Παρεγκεφαλίδα  :   Cerebellum", "υδραγωγός εγκεφάλου (του Sylvius)  :   Cerebral aqueduct (of Sylvius)", "Εγκεφαλικός φλοιός  :   Cerebral Cortex", "φλοιός εγκεφαλικών ημισφαιρίων  :   Cerebral cortex", "εγκεφαλικό ημισφαίριο  :   Cerebral hemisphere", "εγκεφαλικό σκέλος  :   Cerebral pedunculus", "εγκεφαλικό κυστίδιο  :   Cerebral vesicle", "εγκεφαλονωτιαίο υγρό  :   Cerebrospinal fluid", "εγκεφαλικά ημισφαίρια (=τελικός εγκέφαλος)  :   Cerebrum (=telencephalon)", "αυχενικό όγκωμα  :   Cervical intumescence", "αυχενικό όγκωμα  :   Cervical intumescence (=cervical enlargement)", "οσφυοϊερό όγκωμα  :   Cervical lumbosacral (=lumbosacral enlargement)", "χημική σύναψη  :   Chemical synapse", "χολινεργικές ίνες  :   Cholinergic fibre(s)", "χοριοειδές πλέγμα τέταρτης κοιλίας  :   Choroid plexus of the fourth ventricle", "χοριοειδές πλέγμα πλάγιας κοιλίας  :   Choroid plexus of the lateral  ventricle", "χοριοειδές πλέγμα τρίτης κοιλίας  :   Choroid plexus of the third ventricle", "χοριοειδής σχισμή  :   Choroidal fissure", "χρωμιόφιλο κύτταρο  :   Chromaffin cell(s)", "χρωματολυσία  :   Chromatolysis", "φιλόχρωμη ουσία  :   Chromophilic substance", "ακτινοειδές γάγγλιο (=οφθαλμικό)  :   Ciliary ganglion", "Προσαγώγιος φλοιός  :   Cingulate cortex", "έλικα προσαγωγίου  :   Cingulate gyrus", "προσαγώγιο  :   Cingulum", "κύκλωμα του Papez  :   Circuit of Papez", "περικοιλιακά όργανα  :   Circumventricular organs", "προτείχισμα  :   Claustrum", "αναρριχητικές ίνες  :   Climbing fibre(s)", "κοχλιακός πυρήνας  :   Cochlear nucleus", "παράπλευρη προεξοχή  :   Collateral eminence", "παράπλευρο τρίγωνο  :   Collateral trigone", "δεσμικό κύτταρο  :   Column cell(s)", "συνδεσμικές ίνες  :   Commissural fibre(s)", "συνδεσμικός πυρήνας πνευμονογαστρικού νεύρου  :   Commissural nucleus of vagus nerve", "σύνδεσμος  :   Commissure", "κωνιοφόρο κύτταρο  :   Cone cell(s)", "μυελικός κώνος  :   Conus medullaris", "κερατοσυνδεσμικός πυρήνας  :   Cornucommissural nucleus", "ακτινωτός στέφανος  :   Corona radiata", "αμυγδαλοειδές σώμα (=αμυγδαλή)  :   Corpus amygdaloideum (=amygdala)", "Μεσολόβιο  :   Corpus callosum", "σώμα παρεγκεφαλίδας  :   Corpus cerebelli", "μυελώδες σώμα παρεγκεφαλίδας  :   Corpus medullare cerebelli", "παραδιδύμιο σώμα  :   Corpus parabigeminum", "γεφυροπρομηκικό σώμα  :   Corpus pontobulbare", "ραβδωτό σώμα  :   Corpus striatum", "φλοιώδης αμυγδαλοειδής πυρήνας  :   Cortical amygdaloid nucleus", "φλοιογεφυροπαρεγκεφαλιδική οδός  :   Cortico-ponto-cerebellar pathway", "φλοιοπρομηκικές ίνες  :   Corticobulbar fibre(s)", "φλοιόφυγες ίνες  :   Corticofugal fibre(s)", "φλοιοπυρηνικές&nbsp; ίνες (=φλοιοπυρηνικό δεμάτιο)  :   Corticonuclear fibre(s) (=corticonuclear tract)", "φλοιογεφυρικές ίνες  :   Corticopontine fibre(s)", "φλοιοδικτυωτές ίνες  :   Corticoreticular fibre(s)", "φλοιοερυθραίες ίνες  :   Corticorubral fibre(s)", "φλοιονωτιαίο σύστημα  :   Corticospinal system", "φλοιοραβδωτές ίνες  :   Corticostriate fibre(s)", "φλοιοτετραδυμικές ίνες  :   Corticotectal fibre(s)", "φλοιοκαλυπτρικές ίνες  :   Corticotegmental fibre(s)", "φλοιοθαλαμικές ίνες  :   Corticothalamic fibre(s)", "ακρώρεια  :   Culmen", "σφηνοειδής πυρήνας  :   Cuneate nucleus", "σφηνοπαρεγκεφαλιδικές ίνες  :   Cuneocerebellar fibre(s)", "σφηνοειδές λόβιο  :   Cuneus", "κλιτύς  :   Declive", "χιασμός  :   Decussation", "δενδρίτης  :   Dendrite", "Οδοντωτή έλικα<br / &nbsp;  :   Dentate gyrus", "οδοντωτή έλικα (=οδοντωτή ταινία)  :   Dentate gyrus (=fascia dentata)", "οδοντωτός πυρήνας  :   Dentate nucleus", "οδοντωτοδικτυωτό δεμάτιο  :   Dentatoreticular tract", "οδοντωτοθαλαμικό δεμάτιο  :   Dentatothalamic tract", "διαγώνια ταινία του Broca  :   Diagonal band of Broca", "διαγώνια έλικα  :   Diagonal gyrus", "διάμεσος εγκέφαλος  :   Diencephalon", "ευθύ πυραμιδικό δεμάτιο (του Turk)  :   Direct corticospinal tract (=bundle of Turk)", "ντοπαμίνη  :   dopamine", "Ραχιαίος  :   Dorsal", "ραχιαία επιμήκης δεσμίδα (του Schutz)  :   Dorsal longitudinal fasciculus  (=bundle of Schutz)", "ραχιαία νοραδρεναλινεργική δεσμίδα (=νοραδρενεργική)  :   Dorsal noradrenergic bundle", "ραχιαίος πυρήνας καλύπτρας(του Gudden)  :   Dorsal tegmental nucleus (of Gudden)", "σκληρή μήνιγγα  :   Dura mater (=dura)", "ελαιοκοχλιακό δεμάτιο  :   Efferent cochlear bundle (=olivocochlear)", "απαγωγοί ίνες  :   Efferent fibre(s)", "ηλεκτρική σύναψη  :   Electrical synapse", "Ενδορινικός φλοιός  :   Entorhinal cortex", "ενδορινικός φλοιός  :   Entorhinal cortex", "επένδυμα  :   Ependyma", "επενδυματικά κύτταρα  :   Ependymal cell(s)", "επικριτική αισθητικότητα  :   Epicritic sensibility", "επικριτικό σύστημα  :   Epicritic system", "επισκληρίδιο  :   Epidural", "επιθάλαμος  :   Epithalamus", "έξω τοξοειδείς ίνες  :   External arcuate fibre(s)", "έξω κάψα  :   External capsule", "εξωτερική κοκκώδης στιβάδα  :   External granular layer", "εξωτερικός μεσάξονας  :   External mesaxon", "εξωτερική στιβάδα πυραμοειδών κυττάρων  :   External pyramidal layer", "εξωκυτταρικό  :   Extracellular", "εξωπυραμιδικό σύστημα  :   Extrapyramidal system", "εξώτατη κάψα  :   Extreme capsule", "προσωπικό λοφίδιο  :   Facial colliculus", "δρέπανο παρεγκεφαλίδας  :   Falx cerebelli", "δρέπανο εγκεφάλου  :   Falx cerebri", "οδοντωτή ταινία (=οδοντωτή έλικα)  :   Fascia dentata (=dentate gyrus)", "φαιό ταινίδιο  :   Fasciola cinerea", "έλικα φαιού ταινιδίου  :   Fasciolar gyrus", "αέτωμα τέταρτης κοιλίας  :   Fastigium, fourth ventricle", "ινώδες αστροκύτταρο  :   Fibrous astrocyte(s)", "οσφρητικά νημάτια  :   Fila olfactoria", "ριζικά νημάτια  :   Fila radicularia", "τελικό νημάτιο  :   Filum terminale", "παρυφή ιπποκάμπου  :   Fimbria of hippocampus", "λοβός οζιδίου και κροκύδας  :   Flocculonodular lobe (=vestibulocerebellum)", "κροκύδα  :   Flocculus (cerebellar)", "εδαφιαίο πέταλο  :   Floor plate", "φύλλο σκώληκα  :   Folium vermis", "περιαγγειακοί ποδίσκοι (=μυζητικοί)  :   Foot plate (=perivascular feet)", "τυφλό τρήμα  :   Foramen cecum (= foramen caecum)", "πρόσθιος εγκέφαλος  :   Forebrain (=prosencephalon)", "ψαλίδα του εγκεφάλου  :   Fornix", "τέταρτη κοιλία  :   Fourth ventricle", "μετωπιαίος φλοιός  :   Frontal cortex", "μετωπιαίος λοβός  :   Frontal lobe", "μετωπιαία καλύπτρα  :   Frontal operculum", "μετωπιαίος πόλος  :   Frontal pole", "ατρακτοειδές κύτταρο  :   Fusiform cell(s) (=spindle)", "στιβάδα πολύμορφων κυττάρων  :   Fusiform layers (=multiform)", "γ-κινητικός νευρώνας  :   Gamma motor neuron", "γαγγλιακά κύτταρα  :   Ganglion cell(s)", "γονάτιο γάγγλιο  :   Geniculate ganglion", "γόνυ έσω κάψας  :   Genu of internal capsule", "γόνυ μεσολοβίου  :   Genu of the corpus callosum", "γόνυ προσωπικού νεύρου  :   Genu of the facial nerve", "βλαστικό κύτταρο  :   Germinal cell(s)", "γιγάντιο πυραμοειδές κύτταρο (του Betz)  :   Giant pyramidal cell(s) (Betz)", "γιγάντιο αστεροειδές κύτταρο (του Meynert)  :   Giant stellate cell(s) (Meynert)", "γιγαντοκυτταρικός δικτυωτός πυρήνας  :   Gigantocellular reticular nucleus", "νευρογλοία  :   Glia", "γλοιοβλάστη  :   Glioblast", "σφαιροειδής πυρήνας  :   Globose nucleus", "ωχρά σφαίρα  :   Globus pallidus", "Γλουταμικό οξύ  :   Glutamate", "Γλυκίνη  :   Glycine", "κύτταρο του Golgi  :   Golgi cell(s)", "ισχνό λόβιο  :   Gracile lobule", "ισχνός πυρήνας  :   Gracile nucleus", "κοκκώδης φλοιός  :   Granular cortex (=koniocortex)", "κοκκοειδές κύτταρο  :   Granule cell(s)", "φαιή ουσία  :   Gray matter", "Γευστικός φλοιός  :   Gustatory cortex", "γευστικός φλοιός  :   Gustatory cortex", "οδός γεύσεως  :   Gustatory pathway", "Έλικα  :   Gyrus", "ευθεία έλικα  :   Gyrus rectus (=straight gyrus)", "ηνία  :   Habenula", "πυρήνας ηνίας  :   Habenular nucleus", "τρίγωνο ηνίας  :   Habenular trigone", "ετερότυπος φλοιός  :   Heterotypical cortex (=heterogenetic)", "ρομβοειδής εγκέφαλος  :   Hindbrain (=rhombencephalon)", "δακτυλοειδή επάρματα ιπποκάμπου  :   Hippocampal digitations", "ακρολοφία ιπποκάμπου  :   Hippocampal ridge", "ιπποκαμποϋποθαλαμικές ίνες  :   Hippocampohypothalamic fibre(s)", "Ιππόκαμπος  :   Hippocampus", "ομοιότυπος φλοιός  :   Homotypical cortex (=homogenetic)", "οριζόντιο κύτταρο (του Cajal)  :   Horizontal cell(s) (Cajal)", "οριζόντια σχισμή  :   Horizontal fissure", "πυρήνας υπογλώσσιου νεύρου  :   Hypoglossal nerve nucleus", "υποφυσιαίο πυλαίο σύστημα  :   Hypophyseal portal system", "υπόφυση  :   Hypophysis", "πυρήνας υποθαλάμου  :   Hypothalamic nucleus", "υποθάλαμος  :   Hypothalamus", "φαιό&nbsp; ένδυμα μεσολοβίου (=υπερ-μεσολόβια έλικα)  :   Indusium griseum (=supracallosal gyrus)", "κάτω διδύμιο  :   Inferior colliculus", "κάτω μετωπιαία έλικα  :   Inferior frontal gyrus", "πυρήνες κάτω ελαίας  :   Inferior olivary complex", "κάτω ελαία  :   Inferior olive", "κάτω μηνοειδές λόβιο  :   Inferior semilunar lobule (=crus II)", "υποκοκκώδεις στιβάδες (V και VI)  :   Infragranular layer", "χοανικός πυρήνας  :   Infundibular nucleus", "κόλπωμα χοάνης  :   Infundibular recess", "χοάνη (=μίσχος υποφύσεως)  :   Infundibulum", "νήσος του εγκεφάλου (του Reil)  :   Insula (=island of Reil)", "Νησιδωτός φλοιός  :   Insular cortex", "πόλος νήσου  :   Insular pole", "διάμεσος εγκέφαλος  :   Interbrain (=diencephalon)", "μεσοδιδύμιος πυρήνας (=μεσοδιδύμια ζώνη)  :   Intercollicular nucleus (=intercollicular zone)", "επιμήκης σχισμή του εγκεφάλου  :   Interhemispheric fissure (=longitudinal)", "εμβόλιμος πυρήνας μαστίου  :   Intermediate mammillary nucleus  (=intercalated mammillary nucleus)", "διάμεση ζώνη (=μεσοκεράτια)  :   Intermediate zone", "έξω διάμεσος πυρήνας  :   Intermediolateral nucleus", "έσω διάμεσος πυρήνας  :   Intermediomedial nucleus", "έσω τοξοειδείς ίνες  :   Internal arcuate fibre(s)", "έσω κάψα  :   Internal capsule", "εσωτερική κοκκώδης στιβάδα  :   Internal granular layer", "εσωτερικός μεσάξονας  :   Internal mesaxon", "εσωτερική στιβάδα πυραμοειδών κυττάρων  :   Internal pyramidal layer", "μεσοσκελιαίος βόθρος  :   Interpeduncular fossa", "μεσοσκελιαίος πυρήνας  :   Interpeduncular nucleus", "εμβόλιμος πυρήνας  :   Interposed nucleus", "διάμεσος πυρήνας (του Cajal)  :   Interstitial nucleus of Cajal", "μεσοθαλάμια σύνδεση  :   Interthalamic adhesion", "μεσοκοιλιακό τρήμα (του Monro)  :   Interventricular foramen (=foramen of Monro)", "ενδοδικοιλιακή σχισμή  :   Intrabiventeris fissure", "ενδοφλοιικές ίνες  :   Intracortical fibre(s)", "ενδοστεφανιαία έλικα  :   Intralimbic gyri", "ισόφλοιος (=ομοιότυπος φλοιός)  :   Isocortex (=homotypical cortex)", "παραλλόφλοιος (=φλοιός έλικας προσαγωγίου)  :   Juxtallocortex", "παρασχοινιοειδές σώμα  :   Juxtarestiform body", "κοκκώδης φλοιός  :   Koniocortex (=granular cortex)", "προσπεφυκός πέταλο  :   Lamina affixa", "τελικό πέταλο  :   Lamina terminalis", "πλάγιο τρήμα τέταρτης κοιλίας (του Luschka)  :   Lateral aperture of the fourth ventricle (=the foramen of Luschka)", "πλάγια αύλακα (του Sylvius)  :   Lateral fissure (=fissure of Sylvius)", "πλάγια δέσμη  :   Lateral funiculus", "έξω γονατώδες σώμα  :   Lateral geniculate body", "έξω λημνίσκος  :   Lateral lemniscus", "έξω μυελώδες πέταλο ωχρής σφαίρας  :   Lateral medullary lamina of pallidum", "πλάγιο κόλπωμα τέταρτης κοιλίας  :   Lateral recesses of the fourth ventricle", "πλάγια κοιλία  :   Lateral ventricle", "έξω αιθουσαίος πυρήνας (του Deiters)  :   Lateral vestibular nucleus (=Deiters nucleus)", "φακοειδής πυρήνας  :   Lentiform nucleus", "λεπτή μήνιγγα  :   Leptomeninx", "στεφανιαίος λοβός  :   Limbic lobe", "μεταιχμιακό σύστημα  :   Limbic system", "ουδός νήσου  :   Limen insulae", "ταινία του Gennari  :   Line of Gennari (=band of Gennari)", "γλωσσική έλικα  :   Lingual gyrus", "γλωσσίδα της παρεγκεφαλίδας  :   Lingula of cerebellum", "λοβός της παρεγκεφαλίδας  :   Lobe of cerebellum", "υπομέλας τόπος  :   Locus ceruleus", "μακρές συνδετικές ίνες  :   Long association fibre(s)", "μακρές έλικες νήσου  :   Long insular gyri", "επιμήκης σχισμή εγκεφάλου  :   Longitudinal cerebral fissure (=inter-hemispheric)", "επιμήκης χορδή  :   Longitudinal stria", "οσφυοϊερό όγκωμα  :   Lumbosacral intumescence", "μακρογλοία  :   Macroglia", "μαστίο  :   Mammillary body", "μαστική περιοχή  :   Mammillary region", "μεσοθαλάμια σύνδεση  :   Massa intermedia (=Interthalamic adhesion)", "περιμήκης εξοχή  :   Medial eminence (=hypoglossal trigone)", 
+ "έσω τηλεγκεφαλική δεσμίδα  :   Medial forebrain bundle (=medial telencephalic fasciculus)", "έσω μετωπιαίος φλοιός  :   Medial frontal cortex", "έσω γονατώδες σώμα  :   Medial geniculate body", "πυρήνας έσω γονατώδους σώματος  :   Medial geniculate body nucleus", "έσω λημνίσκος  :   Medial lemniscus", "έσω μυελώδες πέταλο ωχρής σφαίρας  :   Medial medullary lamina of pallidum", "μέσο τρήμα τέταρτης κοιλίας (του Magendie)  :   Median aperture of the fourth ventricle (=the foramen of Magendie)", "μέση προεξοχή  :   Median eminence", "Προμήκης μυελός  :   Medulla", "προμήκης μυελός (=έσχατος εγκέφαλος)  :   Medulla oblongata (=myelencephalon)", "μυέλινο ιστίο  :   Medullary velum", "μεσεγκεφαλικός πυρήνας τρίδυμου νεύρου  :   Mesencephalic nucleus of trigeminal nerve", "μέσος εγκέφαλος  :   Mesencephalon (=midbrain)", "μεσεγχυματικό κύτταρο  :   Mesenchymal cell(s)", "μεσόφλοιος (=έλικα προσαγωγίου)  :   Mesocortex (=cingulate gyrus)", "μεταθάλαμος  :   Metathalamus", "οπίσθιος εγκέφαλος  :   Metencephalon", "μικρογλοία  :   Microglia", "Μεσεγκέφαλος  :   Midbrain", "καλύπτρα μεσεγκεφάλου  :   Midbrain tegmentum", "μέσο παρεγκεφαλιδικό σκέλος  :   Middle cerebellar peduncles (=brachia pontis)", "μέση μετωπιαία έλικα  :   Middle frontal gyrus", "μιτροειδές κύτταρο  :   Mitral cell(s)", "μονοαμινεργική οδός  :   Monoaminergic pathway", "Κινητικός φλοιός  :   Motor cortex", "κινητικός φλοιός  :   Motor cortex", "κινητικό ανθρωπάριο  :   Motor homunculus", "κινητικός πυρήνας προσωπικού νεύρου  :   Motor nucleus of facial nerve", "κινητικός πυρήνας τρίδυμου νεύρου  :   Motor nucleus of trigeminal nerve", "στιβάδα πολύμορφων κυττάρων  :   Multiform layer (=fusiform)", "πολύπολος νευρώνας  :   Multipolar neuron", "έσχατος εγκέφαλος (=προμήκης μυελός)  :   Myelencephalon (=medulla oblongata)", "εμμύελες ίνες  :   Myelinated fibre(s)", "νεοπαρεγκεφαλίδα  :   Neocerebellum", "νεόφλοιος (=ισόφλοιος)  :   Neocortex (=isocortex)", "νεοχιτώνιο  :   Neopallium", "νεοραβδωτό σώμα  :   Neostriatum", "νευρική ακρολοφία (=μυελική)  :   Neural crest", "νευρικές πτυχές  :   Neural fold", "νευρική αύλακα (=μυελική)  :   Neural groove", "νευρική πλάκα (=μυελική)  :   Neural plate", "κεντρικό νευρικό σύστημα  :   Neuraxis (=central nervous system)", "νευροβλάστη  :   Neuroblast", "νευροεπιθηλιακό κύτταρο  :   Neuroepithelial cell(s)", "νευρογλοία  :   Neuroglia", "νευροϋπόφυση (=οπίσθιος λοβός υποφύσεως)  :   Neurohypophysis (=posterior lobe of hypophysis)", "νευρείλημα (=έλυτρο του Schwann)  :   Neurolemma (=sheath of Schwann)", "νευροπίλημα  :   Neuropil", "τελικά κομβία  :   Neuropodia (=end feet, boutons terminaux)", "νευροπόρος  :   Neuropore", "μελανοραβδωτές ίνες  :   Nigrostriatal fibre(s)", "μελανοθαλαμικές ίνες  :   Nigrothalamic fibre(s)", "οζίδιο  :   Nodulus", "νοραδρεναλινεργικές ίνες  :   Noradrenergic fibre(s)", "Νορεπινεφρίνη  :   Norepinephrine", "πυρήνας κάτω διδυμίου  :   Nuclei of inferior colliculus", "πυρηνοφλοιικές ίνες  :   Nucleocortical\tfibre(s)", "Επικληνής πυρήνας  :   Nucleus accumbens", "επικλινής πυρήνας διαφράγματος  :   Nucleus accumbens septi", "μικτός πυρήνας  :   Nucleus ambiguus", "βασικός πυρήνας (του Meynert)  :   Nucleus basalis (of Meynert)", "σφηνοειδής δικτυωτός πυρήνας  :   Nucleus cuneiformis", "μεθόριος πυρήνας  :   Nucleus limitans", "πυρήνας του Darkschewitsch  :   Nucleus of Darkschewitsch", "πυρήνας του Roller  :   Nucleus of Roller", "πυρήνας παραπληρωματικού νεύρου  :   Nucleus of the accessory nerve", "πυρήνας πεδίου Η του Forel  :   Nucleus of the H Field of Forel", "πυρήνας έξω γονατώδους σώματος  :   Nucleus of the lateral geniculate body", "πυρήνας έξω λημνίσκου  :   Nucleus of the lateral lemniscus", "πυρήνας έξω οσφρητικής ρίζας  :   Nucleus of the lateral olfactory tract", "πυρήνας οπίσθιου συνδέσμου  :   Nucleus of the posterior commissure", "πυρήνας μονήρους δεσμίδας  :   Nucleus of the solitary tract", "πυρήνας τροχιλιακού νεύρου  :   Nucleus of the trochlear nerve", "ραχιαίος πυρήνας πνευμονογαστρικού νεύρου  :   Nucleus of the vagus nerve", "πρόσθιος περικεράτιος πυρήνας  :   Nucleus pericornualis anterior", "περισκελιαίος πυρήνας  :   Nucleus peripeduncularis", "πρότακτος πυρήνας  :   Nucleus prepositus", "μέγας πυρήνας ραφής  :   Nucleus raphe magnus", "αφανής πυρήνας ραφής  :   Nucleus raphe obscurus", "ωχρός πυρήνας ραφής  :   Nucleus raphe pallidus", "δικτυωτός πυρήνας καλύπτρας γέφυρας (του Bechterew)  :   Nucleus reticularis tegmenti pontis (of Bechterew)", "συνδετικός πυρήνας  :   Nucleus reuniens", "θωρακικός πυρήνας (=<span style=&quot;font-size :  1rem;&quot; στήλη του Clarke)</span   :   Nucleus thoracicus (=column of Clarke)", "μοχλός  :   Obex", "ινιακή έλικα  :   Occipital gyrus", "Ινιακός λοβός  :   Occipital lobe", "ινιακός λοβός  :   Occipital lobe", "ινιακός πόλος  :   Occipital pole", "ινιοκροταφική έλικα  :   Occipitotemporal gyrus", "οσφρητικός λοβός  :   Olfactory bulb", "Οσφρητικός φλοιός  :   Olfactory cortex", "οσφρητικά σπειράματα  :   Olfactory glomerulus", "οσφρητική οδός  :   Olfactory pathway", "οσφρητική περιοχή  :   Olfactory region", "οσφρητική χορδή  :   Olfactory stria", "ολιγοδενδρογλοία  :   Oligodendroglia", "προεξοχή της ελαίας  :   Olivary eminence", 
+ "ελαιοπαρεγκεφαλιδικές ίνες  :   Olivocerebellar fibre(s)", "οπτικό χίασμα  :   Optic chiasm", "οπτικό κόλπωμα (=υπεροπτικό)  :   Optic recess", "κογχικές έλικες  :   Orbital gyri", "ωτικό γάγγλιο  :   Otic ganglion", "ωοειδής πυρήνας  :   Oval nucleus", "σκληρή μήνιγγα  :   Pachymeninx (=dura mater)", "οδοί πόνου και θερμοκρασίας  :   Pain and Temperature pathways", "παλαιοπαρεγκεφαλίδα  :   Paleocerebellum", "παλαιοχιτώνιο  :   Paleopallium", "παλαιοραβδωτό σώμα  :   Paleostriatum", "ωχροϋποθαλάμιες ίνες  :   Pallidosubthalamic fibre(s)", "ωχροκαλυπτρικές ίνες (=ωχροδικτυωτό&nbsp;δεμάτιο)  :   Pallidotegmental fibre(s) (=pallidoreticular tract)", "ωχροθαλαμικές ίνες  :   Pallidothalamic fibre(s)", "ωχρή σφαίρα  :   Pallidum (=globus pallidus)", "χιτώνας  :   Pallium", "παραδιδυμικός πυρήνας  :   Parabigeminal nucleus", "παραβραχιόνιος πυρήνας  :   Parabrachial nucleus", "παρακεντρικό λόβιο  :   Paracentral lobule", "παρακεντρικός πυρήνας  :   Paracentral nucleus", "παραϊπποκάμπεια έλικα  :   Parahippocampal gyrus", "παραλημνίσκιος πυρήνας  :   Paralemniscal nucleus", "παράμεσοι δικτυωτοί πυρήνες  :   Paramedian reticular nucleus", "παραταινιωτή περιοχή (=πεδίο 18)  :   Parastriate area 18", "περιταινιωτή περιοχή (=πεδίο 19)  :   Parastriate area (=area 19)", "παρασυμπαθητικό νευρικό σύστημα  :   Parasympathetic nervous system", "παραταινιωτός πυρήνας  :   Paratenial nucleus", "παρατελική έλικα  :   Paraterminal gyrus", "παρακοιλιακός πυρήνας υποθαλάμου  :   Paraventricular nucleus of the hypothalamus", "παρακοιλιακός πυρήνας θαλάμου  :   Paraventricular nucleus of the thalamus", "βρεγματικό λόβιο  :   Parietal lobule", "βρεγματική καλύπτρα  :   Parietal operculum", "οδός επικριτικής αισθητικότητας  :   Pathway for discriminative sensibility", "ιδιοδεκτικές οδοί  :   Pathways of proprioception", "σκελιαιογεφυρικός πυρήνας  :   Pedunculopontine nucleus", "σκελιαιογεφυρικός πυρήνας καλύπτρας  :   Pedunculopontine tegmental nucleus", "διάτρητη ουσία  :   Perforated substance", "περιαμυγδαλοειδής φλοιός  :   Periamygdaloid cortex", "παραδεσμικός πυρήνας  :   Perifascicular nucleus", "περικάρυο  :   Perikaryon", "περινεύριο  :   Perineurium", "περινευρωνικό  :   Perineuronal", "περιελαϊκός πυρήνας  :   Periolivary nucleus", "περιαγγειακό  :   Perivascular", "περιαγγειακό κύτταρο  :   Perivascular cell(s)", "περιαγγειακοί ποδίσκοι (=μυζητικοί)  :   Perivascular feet (=foot plates)", "περικοιλιακές ίνες  :   Periventricular fibre(s)", "κυτταροφαγία  :   Phagocytosis", "χοριοειδής μήνιγγα  :   Pia mater", "γλοιοχοριοειδής μεμβράνη  :   Pial-glial membrane", "επιφυσιοκύτταρο  :   Pineal cell(s)", "επίφυση (=κωνάριο)  :   Pineal gland", "κόλπωμα κωναρίου  :   Pineal recess", "κυτταρόποση  :   Pinocytosis", "υπόφυση  :   Pituitary (=hypophysis)", "μοριώδης στιβάδα  :   Plexiform layer (=molecular)", "Γέφυρα  :   Pons", "γεφυρική καμπή  :   Pontine flexure", "γεφυρικοί πυρήνες  :   Pontine nuclei", "γεφυρικός πυρήνας ραφής  :   Pontine raphe nucleus", "γεφυροπρομηκικός πυρήνας  :   Pontobulbar nucleus", "γεφυροπαρεγκεφαλιδικές ίνες  :   Pontocerebellar fibre(s) (=transverse pontine)", "μετακεντρική έλικα  :   Postcentral gyrus", "μετασυνδεσμική ψαλίδα  :   Postcommissural fornix", "Οπίσθιος  :   Posterior", "οπίσθια δέσμη  :   Posterior funiculus", "οπίσθιο σκέλος έσω κάψας  :   Posterior limb of internal capsule", "οπίσθιος λοβός υποφύσεως (νευροϋπόφυση)  :   Posterior lobe of hypophysis (=neurohypophysis)", "οπίσθιος πυρήνας υποθαλάμου  :   Posterior nucleus of the hypothalamus", "οπίσθιο τετράγωνο λόβιο  :   Posterior quadrangular lobule [H VI]", "οπίσθια άνω σχισμή  :   Posterior superior fissure", "οπισθιοπλάγια σχισμή  :   Posterolateral fissure (=prenodular)", "οπισθιοπλάγια δέσμη  :   Posterolateral funiculus", "επιχείλιος πυρήνας οπίσθιου κέρατος  :   Posteromarginal nucleus", "προδικοιλιακή σχισμή  :   Prebiventeris fissure", "προκεντρική σχισμή  :   Precentral fissure", "προκεντρική έλικα  :   Precentral gyrus", "προσυνδεσμική ψαλίδα  :   Precommissural fornix", "προσυνδεσμικός ιππόκαμπος  :   Precommissural hippocampus", "προσυνδεσμική περιοχή (=διαφραγματική)  :   Precommissural septal area", "προακρωρειακή σχισμή  :   Preculminata fissure", "προσφηνοειδές λόβιο  :   Precuneus (=quadrate lobule)", "τετραδυμονωτιαίο δεμάτιο  :   Predorsal bundle (=tectospinal tract)", "προμετωπιαίος φλοιός  :   Prefrontal cortex", "προγονατώδης πυρήνας  :   Pregeniculate nucleus", "προκινητικός φλοιός  :   Premotor cortex", "προοπτική περιοχή  :   Preoptic area", "προοπτικός πυρήνας  :   Preoptic nucleus", "προοπτική περιοχή  :   Preoptic region", "προπυραμιδική σχισμή  :   Prepyramidal fissure", "προαπιοειδής περιοχή  :   Prepyriform area", "προαπιοειδής φλοιός  :   Prepyriform cortex", "προϋπόθεμα ιπποκάμπου  :   Presubiculum", "προτετραδυμική περιοχή  :   Pretectal area", "προτετραδυμικός πυρήνας  :   Pretectal nucleus", "προτετραδυμική περιοχή  :   Pretectal region", "πρωτογενείς ακουστικές ίνες  :   Primary auditory fibre(s)", "πρωτογενής σχισμή  :   Primary fissure", "πρωτεύων οσφρητικός φλοιός  :   Primary olfactory cortex", "Πρωτεύον οπτικό πεδίο (=ταινιωτή περιοχή)  :   Primary visual area", "κύριος αισθητικός πυρήνας τρίδυμου νεύρου  :   Principal sensory nucleus of trigeminal nerve", "ιδιοδεκτική αίσθηση  :   Proprioceptive sense", "ιδιοϋποδοχείς  :   Proprioceptors", "πρόσθιος εγκέφαλος  :   Prosencephalon (=forebrain)", "πρωτοπαθής αισθητικότητα  :   Protopathic sensibility", "πρωτοπαθή&nbsp;<span lang=&quot;el&quot; αισθητηριακά συστήματα</span   :   Protopathic sensory systems", "πλασμώδες αστροκύτταρο  :   Protoplasmic astrocyte(s)", "ψαλτήριο (=λύρα του Δαβίδ)  :   Psalterium", "ψευδομονόπολο κύτταρο  :   Pseudounipolar cell(s)", "πτερυγοϋπερώιο γάγγλιο  :   Pterygopalatine ganglion", "προσκέφαλο  :   Pulvinar", "κέλυφος  :   Putamen", "πυραμοειδές κύτταρο  :   Pyramidal cell(s)", "απιοειδής λοβός  :   Pyriform lobe", "τετράδυμο πέταλο  :   Quadrigeminal plate", "πυρήνας ραφής  :   Raphe nuclei", "Πυρήνας της ραφής  :   Raphe nucleus", "υποδοχείς  :   Receptors", "ερυθρός πυρήνας  :   Red nucleus (=nucleus ruber)", "οδοί δικτυωτού σχηματισμού  :   Reticular pathways", "δικτυωτοπαρεγκεφαλιδικές ίνες  :   Reticulocerebellar fibre(s)", "αμφιβληστροειδής χιτώνας  :   Retina", "αμφιβληστροειδοϋποθαλαμικες ίνες  :   Retinohypothalamic fibre(s)", "αμφιβληστροειδοτετραδυμικές ίνες  :   Retinotectal fibre(s)", "οπισθόμικτος πυρήνας  :   Retroambiguus nucleus", "οπισθοσυνδεσμικός ιππόκαμπος  :   Retrocommissural hippocampus", "αναδρομική εκφύλιση  :   Retrograde degeneration", "οπισθοσπλήνιος φλοιός  :   Retrosplenialis cortex", "πέταλα του Rexed  :   Rexed laminae", "ρινικός εγκέφαλος  :   Rhinencephalon", "ρομβοειδής βόθρος  :   Rhomboid fossa", "ρομβοειδής πυρήνας  :   Rhomboidal nucleus", "ραβδιοφόρο κύτταρο  :   Rod cell(s)", "οροφιαίο πέταλο  :   Roof plate", "ριζικό κύτταρο  :   Root cell(s)", "ρίζα νωτιαίου νεύρου  :   Root of spinal nerve", "ρύγχος μεσολοβίου  :   Rostrum of the corpus callosum", "ερυθροελαϊκές ίνες  :   Rubro-olivary fibre(s)", "ερυθροπρομηκικές ίνες  :   Rubrobulbar fibre(s)", "ερυθροπαρεγκεφαλιδικές ίνες  :   Rubrocerebellar fibre(s)", "σιαλικός πυρήνας  :   Salivatory nucleus", "δορυφόρο κύτταρο  :   Satellite cell(s)", "γραφικός κάλαμος  :   Scriptorius calamus", "δευτερογενείς ακουστικές ίνες  :   Secondary auditory fibre(s)", "δευτερογενής σχισμή  :   Secondary fissure", "δευτερεύων οσφρητικός φλοιός  :   Secondary olfactory cortex", "μηνοειδής έλικα  :   Semilunar gyrus", "αισθητικά πεδία  :   Sensory areas", "αισθητικός φλοιός  :   Sensory cortex", "αισθητικό ανθρωπάριο  :   Sensory homunculus", "πυρήνας διαφράγματος  :   Septal nucleus", "διαφραγματική περιοχή  :   Septal region", "διάφραγμα  :   Septum", "Σεροτονίνη  :   Serotonin", "βραχείες συνδετικές ίνες  :   Short association fibre(s)", "βραχείες έλικες νήσου  :   Short insular gyri", "βραχείες έλικες νήσου  :   Short insular gyri", "σωματοδεκτικές ίνες (=σωματοαισθητικές)  :   Somatic afferent fibre(s)", "σωματοκινητικές ίνες  :   Somatic efferent fibre(s)", "σωματοαισθητικοί υποδοχείς  :   Somatoceptors", "Σωματοαισθητικός φλοιός  :   Somatosensory cortex", "σωματοαισθητικός φλοιός  :   Somatosensory cortex (=somesthetic)", "νωτιαίος μυελός  :   Spinal cord", "νευροτόμιο  :   Spinal cord segments", "νωτιαίο γάγγλιο  :   Spinal ganglion", "νωτιαιοτετραδυμικές ίνες  :   Spinotectal fibre(s)", "σπληνίο μεσολοβίου  :   Splenium of the corpus callosum", "αστεροειδές κύτταρο  :   Stellate cell(s)", "τελική ταινία  :   Stria terminalis (=terminal stria)", "μυέλινες χορδές  :   Striae medullares", "ταινιωτή περιοχή (=πρωτεύον οπτικό πεδίο)  :   Striate area (=primary visual)", "ταινιωτός φλοιός  :   Striate cortex", "Ραβδωτό  :   Striatum", "ραβδωτομέλαινες ίνες  :   Strionigral fibre(s)", "ραβδωτο-ωχραίες ίνες  :   Striopallidal fibre(s)", "υπαραχνοειδής  :   Subarachnoid", "υπομεσολόβια περιοχή  :   Subcallosal area", "υπομεσολόβια έλικα  :   Subcallosal gyrus", "υποσυνδεσμικό όργανο  :   Subcommissural organ", "υποσφηνοειδής δικτυωτός πυρήνας  :   Subcuneiform nucleus", "υποσκληρίδιο  :   Subdural", "υποεπενδυματικά αστροκύτταρα  :   Subependymal astrocyte(s)", "υποψαλίδιο όργανο  :   Subfornical organ", "υπόθεμα ιπποκάμπου  :   Subiculum", "υπογνάθιο γάγγλιο  :   Submandibular ganglion", "Μέλαινα ουσία  :   Substania nigra", "πηκτωματώδης ουσία Rolando  :   Substantia gelatinosa of Rolando", "μέλαινα ουσία  :   Substantia nigra", "υποθαλάμια χώρα  :   Subthalamic nucleus", "υποθαλάμιος πυρήνας (του Luys)  :   Subthalamic nucleus of Luys", "υποθαλάμια περιοχή  :   Subthalamic region", "υποθαλαμιο-ωχραίες ίνες  :   Subthalamopallidal fibre(s)", "αύλακα  :   Sulcus(i)", "πρόσθιο παρεγκεφαλιδικό σκέλος  :   Superior cerebellar peduncle (=brachium conjunctivum)", "άνω αυχενικό γάγγλιο  :   Superior cervical ganglion", "άνω διδύμιο  :   Superior colliculus", "άνω μετωπιαία έλικα  :   Superior frontal gyrus", "πυρήνας άνω ελαίας  :   Superior olivary nucleus", "άνω ελαία  :   Superior olive", "άνω μηνοειδές λόβιο  :   Superior semilunar lobule (=crus I)", "άνω αιθουσαίος πυρήνας (του Bechterew)  :   Superior vestibular nucleus (of Bechterew)", "υπερχιασματικός πυρήνας  :   Suprachiasmatic nucleus", "υπερσυνδεσμικός ιππόκαμπος  :   Supracommissural hippocampus", "υπερκοκκώδεις στιβάδες (Ι-ΙΙΙ)  :   Supragranular layers", "υπερχείλια έλικα  :   Supramarginal gyrus", "υπεροπτικός πυρήνας  :   Supraoptic nucleus", "υπεροπτική περιοχή  :   Supraoptic region", "υπερκωνάριο κόλπωμα  :   Suprapineal recess", "υπερνωτιαίος πυρήνας  :   Supraspinal nucleus", "συμπαθητικό νευρικό σύστημα  :   Sympathetic nervous system", "συναπτική σχισμή  :   Synaptic cleft", "συναπτικό κυστίδιο  :   Synaptic vesicle (=neurotransmitter vesicle)", "ταπήτιο  :   Tapetum", "τετράδυμο πέταλο  :   Tectum", "καλύπτρα  :   Tegmentum", "τελικός εγκέφαλος (=εγκεφαλικά ημισφαίρια)  :   Telencephalon", "κροταφική έλικα  :   Temporal gyrus", "κροταφικός λοβός  :   Temporal lobe", "κροταφική καλύπτρα  :   Temporal operculum", "κροταφικός πόλος  :   Temporal pole", "σκηνίδιο παρεγκεφαλίδας  :   Tentorium cerebelli", "θαλαμοφλοιϊκές ίνες  :   Thalamocortical fibre(s)", "θαλαμοραβδωτές ίνες  :   Thalamostriate fibre(s)", "θάλαμος  :   Thalamus", "τρίτη κοιλία  :   Third ventricle", "θωρακικός πυρήνας (=στήλη του Clarke)  :   Thoracic nucleus (=Clarke column)", "εγκάρσια σχισμή του εγκεφάλου  :   Transverse cerebral fissure", "εγκάρσιες κροταφικές έλικες (του Heschl)  :   Transverse temporal gyri (=Heschl gyri)", "εγκάρσιες κροταφικές έλικες (του Heschl)  :   Transverse temporal gyri (=Heschl gyri)", "πυρήνας τραπεζοειδούς σώματος  :   Trapezoid nucleus", "τρίγωνο&nbsp;Philippe-Gombault  :   Triangle of Philippe-Gombault", "πυρήνες τρίδυμου νεύρου  :   Trigeminal complex", "γάγγλιο τρίδυμου νεύρου (του Gasser)  :   Trigeminal ganglion (Gasser)", "τριδυμικός λημνίσκος  :   Trigeminal lemniscus", "φύμα  :   Tuber", "φαιό φύμα  :   Tuber cinereum", "φύμα σκώληκα  :   Tuber of vermis", "πυρήνας φαιού φύματος  :   Tuberal nucleus", "περιοχή φαιού φύματος  :   Tuberal region", "φυματο-μαστικός πυρήνας  :   Tuberomammillary nucleus", "θυσανωτό κύτταρο  :   Tufted cell(s)", "αγκιστροειδής έλικα  :   Uncinate gyrus", "άγκιστρο  :   Uncus", "μονόπολος νευρώνας  :   Unipolar neuron", "αμύελες ίνες  :   Unmyelinated fibre(s)", "υπερμεσολόβια έλικα (=φαιό ένδυμα μεσολοβίου)  :   Upracallosal gyrus (=indusium griseum)", "σταφυλή σκώληκα  :   Uvula of vermis", "τρίγωνο πνευμονογαστρικού νεύρου&nbsp;(=φαιή πτέρυγα)  :   Vagal trigone (=ala cinerea)", "κοιλάδα παρεγκεφαλίδας  :   Vallecula cerebelli", "Κοιλιακός  :   Ventral", "Κοιλιακό καλυπτρικό πεδίο  :   Ventral tegmental area", "κοιλιακό καλυπτρικό πεδίο (του Tsai)  :   Ventral tegmental area of Tsai", "κοιλιοβασικό σύμπλεγμα πυρήνων θαλάμου  :   Ventrobasal complex", "αιθουσαίοι πυρήνες  :   Vestibular complex", "αιθουσαίος φλοιός  :   Vestibular cortex", "αιθουσαίο γάγγλιο (του Scarpa)  :   Vestibular ganglion (Scarpa)", "αιθουσαία οδός  :   Vestibular pathway", "Οπτικός φλοιός  :   Visual Cortex", "οπτικός φλοιός  :   Visual cortex", "οπτική οδός  :   Visual pathway", "οπτικό σύστημα  :   Visual system", "δευτερογενής εκφύλιση (κατά Waller)  :   Wallerian degeneration", "λευκή ουσία  :   White matter", "αβέβαιη ζώνη  :   Zona incerta", "ζώνη Lissauer  :   Zone of Lissauer",
+      
+];
+
+		var common_words = ["the", "of", "and", "a", "an", "by"];
+		var local = false;
+		var searchBox_state = document.getElementById("searchBox");
+		
+
+		function removeAllChildNodes(parent) {
+		    while (parent.firstChild) {
+		        parent.removeChild(parent.firstChild);
+	    	}
+	    }
+
+	    function showResults(resultat) {
+	    	let results = document.createElement('li');
+	    	let newResultText = document.createTextNode(resultat.toString());
+	    	results.appendChild(newResultText);
+	    	// get handle of parent element where we need to insert dynamic element
+			let resultList = document.querySelector('#resultList')
+			// append the dynamic paragrah element
+			resultList.appendChild(results)
+		}
+
+		function search(){
+			local = false;
+			document.getElementById("noResults").style.display = "none";
+			document.getElementById("searchResults").style.display = "none"
+			removeAllChildNodes(resultList)
+		    var query = document.getElementById("inp").value;
+		    var query_low = query.toLowerCase();
+		    query_low = query_low.trim();
+		    query_low = query_low.toString();
+
+		    if (query_low.length !== 0){
+		        for (element of all){
+		            var element_low = element.toLowerCase();
+		            element_low = element_low.trim();
+		            element_low = element_low.toString();
+		            console.log(element_low);
+		            console.log(query_low);
+		            if (element_low.includes(query_low)){
+		            	showResults(element);
+		            	local = true;
+		            }
+		        }
+		    }
+
+		    if (!local){
+		    	advancedSearch(query_low, query);
+		    }
+
+		    if (local){
+		    	document.getElementById("searchResults").style.display = "block";
+		    }
+		}
+
+		function advancedSearch(lowCaseQuery, normalQuery){
+			var query_split = lowCaseQuery.split(" ");
+			console.log(query_split);
+			for (query_part of query_split){
+				if (!common_words.includes(query_part)){
+					for (element of all){
+						var element_low = element.toLowerCase();
+				        element_low = element_low.trim();
+				        element_low = element_low.toString();
+				        console.log(query_part);
+				        if (element_low.includes(query_part.toString()) || query_part.includes(element_low)){
+				        	showResults(element);
+				        	local = true;
+				       	}
+			        }
+			    }
+			}
+
+			if (!local){
+				document.getElementById("noResults").style.display = "block";
+			}
+		}
+
+		function onlineSearch() {
+			var query = document.getElementById("inp").value;
+			var query_split = query.split(" ");
+			if (query_split.length < 3){
+				var url = "https://mymemory.translated.net/en/English/Greek/" + query.toString();
+				window.open(url);
+			}else{
+				url = "https://www.thefreedictionary.com/d/" +query.toString();
+				window.open(url);
+			}
+		}
+	</script>
+
+</body>
+</html>
