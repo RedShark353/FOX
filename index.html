@@ -9,7 +9,7 @@
 	<h1 id="fox">F<span style="color: red">O</span>X</h1>
 	<div id="searchBox">
 		<input type="text" id="inp" onkeypress="search()">
-		<button id="searchButton" onclick="onlineSearch()">Search</button>
+		<button id="searchButton" onclick="defineSearch()">Search</button>
 	</div>
 	<h4 id="noResults">That is a tricky one! Press Search to find online</h4>
 	<div id="searchResults">
@@ -245,7 +245,17 @@
 		var common_words = ["the", "of", "and", "a", "an", "by"];
 		var local = false;
 		var searchBox_state = document.getElementById("searchBox");
+		var pressCount = 0;
 		
+		function defineSearch(){
+			if(pressCount == 0){
+				search();
+				pressCount++;
+			}else if(pressCount == 1){
+				pressCount = 0;
+				onlineSearch();
+			}
+		}
 
 		function removeAllChildNodes(parent) {
 		    while (parent.firstChild) {
@@ -278,8 +288,6 @@
 		            var element_low = element.toLowerCase();
 		            element_low = element_low.trim();
 		            element_low = element_low.toString();
-		            console.log(element_low);
-		            console.log(query_low);
 		            if (element_low.includes(query_low)){
 		            	showResults(element);
 		            	local = true;
@@ -298,14 +306,12 @@
 
 		function advancedSearch(lowCaseQuery, normalQuery){
 			var query_split = lowCaseQuery.split(" ");
-			console.log(query_split);
 			for (query_part of query_split){
 				if (!common_words.includes(query_part)){
 					for (element of all){
 						var element_low = element.toLowerCase();
 				        element_low = element_low.trim();
 				        element_low = element_low.toString();
-				        console.log(query_part);
 				        if (element_low.includes(query_part.toString()) || query_part.includes(element_low)){
 				        	showResults(element);
 				        	local = true;
